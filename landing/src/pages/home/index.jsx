@@ -2,7 +2,12 @@ import React from "react";
 import maplibregl from "maplibre-gl";
 import Map, { NavigationControl, Marker } from "react-map-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
+import { sendRequest } from "../../request-method/request";
 const Home = () => {
+  const getRedZones = async () => {
+    const res = await sendRequest("GET", "/api/get_dangerzones");
+  };
+
   return (
     <div className="map-wrap">
       <Map
@@ -21,13 +26,17 @@ const Home = () => {
           <Marker
             latitude={35.49548}
             longitude={35.49548}
-            color="rgb(255, 174, 0)"
+            color="transparent"
+            style={{
+              boxShadow: "5px  10px 10px 50px rgba(255,0,0,0.5) ",
+              borderRadius: "50%",
+            }}
           />
           <Marker
             latitude={35.49548}
             longitude={35.49548}
             children={"danger"}
-            style={{ color: "black", fontSize: "18px" }}
+            style={{ color: "white", fontSize: "18px" }}
           />
         </div>
       </Map>
