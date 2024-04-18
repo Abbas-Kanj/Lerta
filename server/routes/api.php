@@ -21,6 +21,7 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('get_family_members', [FamilyController::class, 'index']);
+    Route::get('get_dangerzones', [ShelterController::class, 'dangerzones']);
     Route::get('get_shelters', [ShelterController::class, 'index']);
     Route::get('get_nearset_shelters', [ShelterController::class, 'get_nearset_shelters']);
 });
