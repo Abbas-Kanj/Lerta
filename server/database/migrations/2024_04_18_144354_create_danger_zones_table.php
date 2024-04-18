@@ -11,16 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('danger_zones', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
             $table->float('lat');
             $table->float('lng');
-            $table->string('phone_number')->nullable();
-            $table->foreignId('family_id')->nullable()->references('id')->on('families')->cascadeOnDelete();
-            $table->string('password');
-            $table->rememberToken();
+            $table->float('radius');
+            $table->enum('type', ['Earthquake', 'Volcano', 'Tsunami']);
             $table->timestamps();
         });
     }
@@ -30,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('danger_zones');
     }
 };
